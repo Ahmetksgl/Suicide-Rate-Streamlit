@@ -4,6 +4,7 @@ import joblib
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import lightgbm as lgb
 
 
 st.set_page_config(layout='wide')
@@ -18,7 +19,7 @@ def get_data():
     return df
 
 def get_model():
-    model = joblib.load("random_forest_model.pkl")
+    model = joblib.load('lightgbm_model.pkl')
     return model
 
 st.header(':red[Suicide Rate]')
@@ -121,12 +122,12 @@ elif selected_page == "Prediction":
     model = get_model()
     feature_names = joblib.load('feature_names.pkl')
    
-    country = st.selectbox("Select Your Country", df['country'].unique(), help="The country where the data was collected.")
-    year = st.number_input("Select Year", min_value=2017, max_value=2050, step=1, value=2020, help="The year in which the suicide data was recorded.")
+    country = st.selectbox("Select Your Country", df['country'].unique(), help="Select the country for which you want to predict the suicide rate.")
+    year = st.number_input("Select Year", min_value=2017, max_value=2050, step=1, value=2020, help="Select a year for which you want to predict the suicide rate.")
     sex = st.selectbox("Select Gender", ['male', 'female'], help="The gender of the individuals.")
     age = st.selectbox("Select Age Group", ['5-14 years', '15-24 years', '25-34 years', '35-54 years', '55-74 years', '75+ years'], help="The age group of the individuals.")
-    population = st.number_input("Enter Population", min_value=1000, max_value=500000000, step=10000, value=1000000, help="The total population of the country or demographic group.")
-    gdp_per_capita = st.number_input("Enter GDP per Capita ($)", min_value=100.0, max_value=100000.0, step=5000.0, value=20000.0, help="The average economic output per person, in US dollars.")
+    population = st.number_input("Enter Population", min_value=1000, max_value=500000000, step=10000, value=1000000, help="Enter the total population of the country or demographic group.")
+    gdp_per_capita = st.number_input("Enter GDP per Capita ($)", min_value=100.0, max_value=100000.0, step=5000.0, value=20000.0, help="Enter the average economic output per person, in US dollars.")
 
     
     input_data = {'year': [year], 'population': [population], 'gdp_per_capita ($)': [gdp_per_capita], 'sex': [sex], 'age': [age], 'country': [country]}
