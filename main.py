@@ -21,6 +21,7 @@ def get_data():
 def get_model():
     model = joblib.load('lightgbm_model.pkl')
     return model
+feature_names = joblib.load('feature_names.pkl')
 
 
 st.header(':red[Suicide Rate]')
@@ -121,8 +122,11 @@ elif selected_page == "Graphics":
 
 elif selected_page == "Prediction":
     model = get_model()
+<<<<<<< HEAD
     feature_names = joblib.load('feature_names.pkl')
     
+=======
+>>>>>>> f7b73d229f7595be89f061fd52585f667d75489b
    
     country = st.selectbox("Select Your Country", df['country'].unique(), help="Select the country for which you want to predict the suicide rate.")
     year = st.number_input("Select Year", min_value=2017, max_value=2050, step=1, value=2020, help="Select a year for which you want to predict the suicide rate.")
