@@ -5,6 +5,7 @@ This project analyzes global suicide rates using data from the Kaggle Suicide Ra
 You can explore the app live here: [Suicide Rate Prediction App](https://suicide-rate.streamlit.app/)
 
 Key Features:
-View and analyze suicide data from various countries.
-Visualize global trends through interactive charts and graphs.
-Predict future suicide rates based on user inputs.
+- View and analyze suicide data from various countries.
+- Visualize global trends through interactive charts and graphs.
+- Predict future suicide rates based on user inputs.
+
